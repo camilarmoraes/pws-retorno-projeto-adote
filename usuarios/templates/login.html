@@ -32,7 +32,7 @@
                         <hr>
                         <form action="{% url 'login' %}" method="POST">{% csrf_token %}
                             <span>Nome:</span>
-                            <input type="text" class="form-control" placeholder="Digite seu nome..." name="nome">
+                            <input type="text" class="form-control" placeholder="Digite seu nome..." name="nome" value="{{request.POST.nome}}">
                             <br>
                            
                             <span>Senha:</span>
