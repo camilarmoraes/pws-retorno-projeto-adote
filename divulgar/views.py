@@ -23,9 +23,25 @@ def novo_pet(request):
         raca = request.POST.get('raca')
 
 
+
         #TODO: validas os dados
+        # VALIDAÇÃO DA FOTO
+        if foto is None:
+            messages.add_message(request,constants.ERROR,'Uma foto deve ser enviada!')
+            return render(request,'novo_pet.html')
+
+        # DEMAIS CAMPOS
+        if len(nome.strip()) == 0 or len(descricao.strip()) == 0 or len(estado.strip()) == 0 or len(cidade.strip()) == 0 or len(telefone.strip()) == 0 :
+            messages.add_message(request,constants.ERROR,"Preencha todos os campos !")
+            return render(request,'novo_pet.html')
+
+        if len(telefone) > 14 or len(telefone) < 9:
+            messages.add_message(request,constants.ERROR,"Digite um número de telefone válido!")
+            return render(request,'novo_pet.html')
+
+        
         #CIDADE E ESTADO NA API DOS CORREIOS
-        #Adicionar mensagens de erro
+        
         pet = Pet(
             usuario = request.user,
             foto=foto,

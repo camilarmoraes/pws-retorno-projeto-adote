@@ -49,6 +49,7 @@ def cadastro(request):
 def logar(request): #Nome dessa função não pode ser igual a nome de métodos
     #Fazer uma verificação para caso o usuário já esteja logado
     if request.user.is_authenticated:
+        # Seria bom colocar uma tela inicial do próprio usuário
         return redirect('/divulgar/novo_pet')
 
     if request.method == "GET":
